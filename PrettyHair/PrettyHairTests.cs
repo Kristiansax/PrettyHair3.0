@@ -3,7 +3,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PrettyHair.Core.Interfaces;
 using PrettyHair.Core.Entities;
 using PrettyHair.Core;
-using PrettyHair.Core.Repositories;
 
 namespace PrettyHair
 {
@@ -32,16 +31,16 @@ namespace PrettyHair
         [TestMethod]
         public void CanAddItem()
         {
-            repository.addItem(Table);
+            repository.AddItem(Table);
             Assert.AreEqual(1, repository.WareList.Count);
 
-            repository.addItem(Shoe);
+            repository.AddItem(Shoe);
             Assert.AreEqual(2, repository.WareList.Count);
         }
         [TestMethod]
         public void CanChangeQuantity()
         {
-            repository.addItem(Table);
+            repository.AddItem(Table);
             Assert.AreEqual(1, repository.WareList[1].Amount);
             repository.UpdateQuantity(1, 20);
             Assert.AreEqual(20, repository.WareList[1].Amount);
@@ -49,7 +48,7 @@ namespace PrettyHair
         [TestMethod]
         public void CanChangePrice()
         {
-            repository.addItem(Table);
+            repository.AddItem(Table);
             Assert.AreEqual(1500, repository.WareList[1].Price);
             repository.UpdatePrice(1, 1600);
             Assert.AreEqual(1600, repository.WareList[1].Price);
@@ -57,7 +56,7 @@ namespace PrettyHair
         [TestMethod]
         public void CanChangeDesignation()
         {
-            repository.addItem(Table);
+            repository.AddItem(Table);
             Assert.AreEqual("This is a wooden table", repository.WareList[1].Designation);
             repository.UpdateDesignation(1, "This is a mahogany table");
             Assert.AreEqual("This is a mahogany table", repository.WareList[1].Designation);
@@ -68,12 +67,12 @@ namespace PrettyHair
         {
             Ware Table = new Ware(1500, 1, "This is a wooden table");
             Ware Shoes = new Ware(200, 30, "These are shoes");
-
+            Assert.AreEqual(repository.GetWares(), repository.WareList);
         }
         [TestMethod]
         public void CanDeleteWareByID()
         {
-            repository.addItem(Table);
+            repository.AddItem(Table);
             Assert.AreEqual(1, repository.GetWares().Count);
             repository.DeleteWareByID(1);
             Assert.AreEqual(0, repository.GetWares().Count);
@@ -111,7 +110,7 @@ namespace PrettyHair
         {
             CanAddCustomers();
 
-            CR.RemoveCustomerByID(1);
+            CR.DeleteCustomerByID(1);
 
             Assert.AreEqual(3, CR.GetAllCustomers().Count);
         }
@@ -159,9 +158,9 @@ namespace PrettyHair
         {
             double getTotalPrice;
             Assert.AreEqual(0, repository.GetWares().Count);
-            repository.addItem(Table);
-            repository.addItem(Shoe);
-            repository.addItem(Brush);
+            repository.AddItem(Table);
+            repository.AddItem(Shoe);
+            repository.AddItem(Brush);
             getTotalPrice = repository.GetTotalPrice(repository.WareList);
             Assert.AreEqual(11250, getTotalPrice);
         }
@@ -170,15 +169,15 @@ namespace PrettyHair
         {
             double getWareTotalPrice;
             Assert.AreEqual(0, repository.GetWares().Count);
-            repository.addItem(Brush);
+            repository.AddItem(Brush);
             getWareTotalPrice = repository.GetWareTotalPrice(1, repository.WareList);
             Assert.AreEqual(3750, getWareTotalPrice);
 
-            repository.addItem(Shoe);
+            repository.AddItem(Shoe);
             getWareTotalPrice = repository.GetWareTotalPrice(2, repository.WareList);
             Assert.AreEqual(6000, getWareTotalPrice);
 
-            repository.addItem(Table);
+            repository.AddItem(Table);
             getWareTotalPrice = repository.GetWareTotalPrice(3, repository.WareList);
             Assert.AreEqual(1500, getWareTotalPrice);
         }

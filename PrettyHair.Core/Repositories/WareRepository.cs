@@ -20,7 +20,7 @@ namespace PrettyHair.Core
         {
             return WareList;
         }
-        public void addItem(Ware item)
+        public void AddItem(Ware item)
         {
             WareList.Add(Id++, item);
         }

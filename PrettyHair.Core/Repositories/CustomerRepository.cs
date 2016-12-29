@@ -36,5 +36,9 @@ namespace PrettyHair.Core
         {
             return null;
         }
+        public void Clear()
+        {
+
+        }
     }
 }
