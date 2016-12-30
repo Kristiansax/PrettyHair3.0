@@ -38,7 +38,7 @@ namespace PrettyHair.Core
         }
         public void Clear()
         {
-
+            CustomerList.Clear();
         }
     }
 }

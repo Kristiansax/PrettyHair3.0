@@ -67,7 +67,7 @@ namespace PrettyHair
         {
             Ware Table = new Ware(1500, 1, "This is a wooden table");
             Ware Shoes = new Ware(200, 30, "These are shoes");
-            Assert.AreEqual(repository.GetWares(), repository.WareList);
+            Assert.AreEqual(repository.WareList, repository.GetWares());
         }
         [TestMethod]
         public void CanDeleteWareByID()
